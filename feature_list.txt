@@ -1,0 +1,14 @@
+game ideas:
+- player 1 has vision of their immediate surroundings either from a circle or cone coming from them (flashlight)
+- player 1 has to communicate with player 2 to figure out how to solve the puzzle/escape the room
+- player 2 has vision of an indiviudal room, and can switch between rooms
+- player 1 is being chased by an enemy
+- enemy only chases player 1 if player 2 is not currently looking at it
+- if player 2 looks at enemy for too long then the camera malfunctions/they get stunned/w.e inconvenience
+- player 2 sees obstacles in the room, maybe more than are actually there -- extraneous stuff
+- player 1 has to filter through the misinformation coming from player 2
+- if player 2s camera gets stunned they don't know it
+- maybe player 1 can see enemy and player 2 can see traps but not vice-versa
+- periodic camera outtages that player 1 needs to reset
+- cameras have limited time of use
+- player 1 refreshes camera time with batteries
