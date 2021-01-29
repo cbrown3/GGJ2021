@@ -1,0 +1,6 @@
+game ideas:
+- player 2 camera can only see one room at a time
+- enemy moves towards player 1 only while not in player 2's camera
+- if player 2 looks at the enemy for too long then the enemy freezes the camera or stuns their ability to change camera etc.
+- player 1 sees truth while player 2 sees extraneous stuff on the level
+- player 1 has to decrypt which of the objects from player 2's view is actually needed to solve the puzzle and get to next level
