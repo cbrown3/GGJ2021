@@ -5,7 +5,7 @@ func _on_CreateButton_pressed():
 	_load_game()
 
 func _on_JoinButton_pressed():
-	Network.connect_to_server("Player 2")
+	Network.connect_to_server("Player 2", $VBoxContainer/TextEdit.text)
 	_load_game()
 
 func _load_game():

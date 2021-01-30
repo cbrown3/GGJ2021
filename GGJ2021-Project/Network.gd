@@ -21,11 +21,14 @@ func create_server(player_nickname):
 	peer.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	get_tree().set_network_peer(peer)
 
-func connect_to_server(player_nickname):
+func connect_to_server(player_nickname, ip_address):
 	self_data.name = player_nickname
 	get_tree().connect('connected_to_server', self, '_connected_to_server')
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client(DEFAULT_IP, DEFAULT_PORT)
+	if ip_address != null:
+		peer.create_client(ip_address, DEFAULT_PORT)
+	else:
+		peer.create_client(DEFAULT_IP, DEFAULT_PORT)
 	get_tree().set_network_peer(peer)
 
 func _connected_to_server():
