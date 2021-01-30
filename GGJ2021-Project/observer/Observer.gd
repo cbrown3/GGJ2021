@@ -11,6 +11,10 @@ slave var slave_movement = MoveDirection.NONE
 func _ready():
 	pass
 
+func _process(delta):
+	if is_network_master():
+		$Camera2D.make_current()
+
 func _physics_process(delta):
 	var direction = MoveDirection.NONE
 	if is_network_master():
