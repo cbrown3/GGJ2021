@@ -12,5 +12,3 @@ game ideas:
 - periodic camera outtages that player 1 needs to reset
 - cameras have limited time of use
 - player 1 refreshes camera time with batteries
-
--Push Test MJS 1/29/2021
