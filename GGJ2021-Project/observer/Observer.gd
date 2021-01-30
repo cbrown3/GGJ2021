@@ -14,7 +14,6 @@ func _ready():
 	var i = 0
 	for node in children:
 		if node.name.begins_with("Camera "):
-			print(node.name)
 			cameraLocs[i] = node
 			i+= 1
 

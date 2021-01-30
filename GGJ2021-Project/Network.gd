@@ -1,7 +1,7 @@
 extends Node
 
 const DEFAULT_IP = '127.0.0.1'
-const DEFAULT_PORT = 31400
+const DEFAULT_PORT = 63384
 const MAX_PLAYERS = 2
 
 var players = { }
@@ -25,7 +25,6 @@ func connect_to_server(player_nickname, ip_address):
 	self_data.name = player_nickname
 	get_tree().connect('connected_to_server', self, '_connected_to_server')
 	var peer = NetworkedMultiplayerENet.new()
-	print(ip_address)
 	if ip_address != null:
 		peer.create_client(ip_address, DEFAULT_PORT)
 	else:
