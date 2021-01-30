@@ -7,4 +7,14 @@
 position = Vector2( -1.58919, 1 )
 script = ExtResource( 1 )
 
-[node name="balls" parent="." instance=ExtResource( 2 )]
+[node name="box" parent="." instance=ExtResource( 2 )]
+
+[node name="box2" parent="." instance=ExtResource( 2 )]
+
+[node name="box3" parent="." instance=ExtResource( 2 )]
+
+[node name="box4" parent="." instance=ExtResource( 2 )]
+
+[node name="box5" parent="." instance=ExtResource( 2 )]
+
+[node name="box6" parent="." instance=ExtResource( 2 )]
