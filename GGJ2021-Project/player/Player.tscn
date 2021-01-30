@@ -2,7 +2,7 @@
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/player.png" type="Texture" id=2]
-[ext_resource path="res://player/light.png" type="Texture" id=3]
+[ext_resource path="res://sprites/lightBeam.png" type="Texture" id=3]
 [ext_resource path="res://player/shadow.png" type="Texture" id=4]
 [ext_resource path="res://interface/GUI.tscn" type="PackedScene" id=5]
 
@@ -26,6 +26,8 @@ z_index = -1
 texture = ExtResource( 4 )
 
 [node name="GUI" parent="." instance=ExtResource( 5 )]
+margin_left = -76.3182
+margin_right = 79.6818
 
 [node name="RespawnTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -39,9 +41,17 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 2.66968, -2.66968 )
+position = Vector2( 1.98145, -52.7612 )
+scale = Vector2( 0.133004, 0.115402 )
 texture = ExtResource( 3 )
-texture_scale = 1.27
-energy = 0.54
+offset = Vector2( 0, -3000 )
+texture_scale = 22.57
+energy = 4.17
+range_height = 1.0
+range_item_cull_mask = -2147483647
 shadow_enabled = true
+shadow_buffer_size = 6298
+shadow_gradient_length = 1013.7
+shadow_filter = 1
+shadow_filter_smooth = 40.6
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
