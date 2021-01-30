@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 
 # Declare member variables here. Examples:
@@ -15,21 +15,25 @@ class Box:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	generateBoxes(10)
 
-	
-func generateBoxes():
-	for n in range(11):
-		boxes[n] = Box.new()
-		boxes[n].id = n
+func generateBoxes(numBoxes):
+	for n in range(numBoxes+1):
+		var newBox = Box.new()
+		newBox.id = n
 		if n == 0:
-			boxes[n].whatsInside = Contents.DOORKEY
+			newBox.whatsInside = Contents.DOORKEY
 		elif n == 1 || n == 2:
-			boxes[n].whatsInside = Contents.GLUE
+			newBox.whatsInside = Contents.GLUE
 		elif n == 3:
-			boxes[n].whatsInside = Contents.SHOCK
+			newBox.whatsInside = Contents.SHOCK
 		else:
-			boxes[n].whatsInside = Contents.NOTHING
+			newBox.whatsInside = Contents.NOTHING
+		boxes.append(newBox)
+	for box in boxes:
+		print(box.whatsInside)
+	pass
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
