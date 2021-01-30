@@ -7,7 +7,7 @@ enum Contents {NOTHING, GLUE, SHOCK, DOORKEY}
 class Box:
 	var id # int
 	var whatsInside # enum Contents
-	var dime # Vector2
+	#var dime # Vector2
 	var posi # Vector2
 
 # Called when the node enters the scene tree for the first time.
@@ -47,12 +47,12 @@ func generatePosition(box):
 	var valid = boxes.size() == 0
 	while !valid:
 		valid = true
-		var pyrange = range(pos.y, pos.y + box.dime.y)
+		var pyrange = range(pos.y, pos.y + 200)
 		for compare in boxes:
-			var cyrange = range(compare.posi.y, compare.posi.y + compare.dime.y)
-			if range(compare.posi.x, compare.posi.x + compare.dime.x).has(pos.x) && join(pyrange, cyrange).size() < pyrange.size() + cyrange.size():
+			var cyrange = range(compare.posi.y, compare.posi.y + 200)
+			if range(compare.posi.x, compare.posi.x + 200).has(pos.x) && join(pyrange, cyrange).size() < pyrange.size() + cyrange.size():
 				valid == false
-			elif range(compare.posi.x - compare.dime.x, compare.posi.x).has(pos.x) && join(pyrange, cyrange).size() < pyrange.size() + cyrange.size():
+			elif range(compare.posi.x - 200, compare.posi.x).has(pos.x) && join(pyrange, cyrange).size() < pyrange.size() + cyrange.size():
 				valid == false
 			if !valid:
 				pos = Vector2(randi() % 851,  randi() % 451)
@@ -63,7 +63,7 @@ func generateBox(num, contents):
 	var box = Box.new()
 	box.id = num
 	box.whatsInside = contents
-	box.dime = generateDimensions()
+	#box.dime = generateDimensions()
 	box.posi = generatePosition(box)
 	return box
 	
