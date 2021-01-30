@@ -7,7 +7,6 @@ enum Contents {NOTHING, GLUE, SHOCK, DOORKEY}
 class Box:
 	var id # int
 	var whatsInside # enum Contents
-	#var dime # Vector2
 	var posi # Vector2
 
 # Called when the node enters the scene tree for the first time.
@@ -21,7 +20,6 @@ func _ready():
 
 func generateBoxes(bodies):
 	for n in range(bodies.size()):
-		print(bodies[n])
 		var box = generateBox(n, decideContents(n))
 		boxes.append(box)
 		bodies[n].position = box.posi
@@ -47,13 +45,17 @@ func generatePosition(box):
 	var valid = boxes.size() == 0
 	while !valid:
 		valid = true
-		var pyrange = range(pos.y, pos.y + 200)
 		for compare in boxes:
-			var cyrange = range(compare.posi.y, compare.posi.y + 200)
-			if range(compare.posi.x, compare.posi.x + 200).has(pos.x) && join(pyrange, cyrange).size() < pyrange.size() + cyrange.size():
-				valid == false
-			elif range(compare.posi.x - 200, compare.posi.x).has(pos.x) && join(pyrange, cyrange).size() < pyrange.size() + cyrange.size():
-				valid == false
+			if compare.posi.x <= pos.x && compare.posi.x + 200 >= pos.x:
+				if compare.posi.y <= pos.y && compare.posi.y + 200 >= pos.y:
+					valid = false
+				elif compare.posi.y >= pos.y && compare.posi.y - 200 <= pos.y:
+					valid = false
+			elif compare.posi.x >= pos.x && compare.posi.x - 200 <= pos.x:
+				if compare.posi.y >= pos.y && compare.posi.y - 200 <= pos.y:
+					valid = false
+				elif compare.posi.y <= pos.y && compare.posi.y + 200 >= pos.y:
+					valid = false
 			if !valid:
 				pos = Vector2(randi() % 851,  randi() % 451)
 				break
@@ -63,13 +65,5 @@ func generateBox(num, contents):
 	var box = Box.new()
 	box.id = num
 	box.whatsInside = contents
-	#box.dime = generateDimensions()
 	box.posi = generatePosition(box)
 	return box
-	
-func join(arr1, arr2):
-	var result = arr1
-	for a2 in arr2:
-		if !arr1.has(a2):
-			result.append(a2)
-	return result
