@@ -6,6 +6,8 @@ var camPos = 0
 
 enum CameraSwitch { LEFT, RIGHT, NONE }
 
+slave var slave_position = Vector2()
+slave var slave_movement = CameraSwitch.NONE
 
 func _ready():
 	var children = get_parent().get_children()
@@ -25,7 +27,12 @@ func _process(delta):
 			direction = CameraSwitch.RIGHT
 		$Camera2D.make_current()
 		
-	_move(direction)
+		rset_unreliable('slave_position', position)
+		rset('slave_movement', direction)
+		_move(direction)
+	else:
+		_move(slave_movement)
+		position = slave_position
 	
 	if get_tree().is_network_server():
 		Network.update_position(int(name), position)
@@ -45,6 +52,6 @@ func _move(direction):
 				camPos = 0
 			transform = cameraLocs[camPos].transform
 
-func init(nickname, start_position):
+func init(nickname, start_position, is_slave):
 	$ObserverGUI/Nickname.text = nickname
 	global_position = start_position
