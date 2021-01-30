@@ -7,8 +7,6 @@ func _ready():
 	var new_player
 	var id = get_tree().get_network_unique_id()
 	
-	print(id)
-	
 	if id == 1:
 		new_player = preload('res://player/Player.tscn').instance()
 	else:

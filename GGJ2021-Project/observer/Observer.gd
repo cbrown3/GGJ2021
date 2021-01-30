@@ -1,55 +1,54 @@
-extends KinematicBody2D
+extends Node2D
 
-const MOVE_SPEED = 10.0
+var cameraLocs = { }
 
-enum MoveDirection { UP, DOWN, LEFT, RIGHT, NONE }
+var camPos = 0
 
-slave var slave_position = Vector2()
-slave var slave_movement = MoveDirection.NONE
+enum CameraSwitch { LEFT, RIGHT, NONE }
 
 
 func _ready():
-	pass
+	var children = get_parent().get_children()
+	var i = 0
+	for node in children:
+		if node.name.begins_with("Camera "):
+			print(node.name)
+			cameraLocs[i] = node
+			i+= 1
 
 func _process(delta):
+	var direction = CameraSwitch.NONE
 	if is_network_master():
+		if Input.is_action_just_pressed('left'):
+			direction = CameraSwitch.LEFT
+		elif Input.is_action_just_pressed('right'):
+			direction = CameraSwitch.RIGHT
 		$Camera2D.make_current()
-
-func _physics_process(delta):
-	var direction = MoveDirection.NONE
-	if is_network_master():
-		if Input.is_action_pressed('left'):
-			direction = MoveDirection.LEFT
-		elif Input.is_action_pressed('right'):
-			direction = MoveDirection.RIGHT
-		elif Input.is_action_pressed('up'):
-			direction = MoveDirection.UP
-		elif Input.is_action_pressed('down'):
-			direction = MoveDirection.DOWN
 		
-		rset_unreliable('slave_position', position)
-		rset('slave_movement', direction)
-		_move(direction)
-	else:
-		_move(slave_movement)
-		position = slave_position
+	_move(direction)
 	
 	if get_tree().is_network_server():
 		Network.update_position(int(name), position)
 
 func _move(direction):
 	match direction:
-		MoveDirection.NONE:
+		CameraSwitch.NONE:
 			return
-		MoveDirection.UP:
-			move_local_y(-MOVE_SPEED)
-		MoveDirection.DOWN:
-			move_local_y(MOVE_SPEED)
-		MoveDirection.LEFT:
-			move_local_x(-MOVE_SPEED)
-		MoveDirection.RIGHT:
-			move_local_x(MOVE_SPEED)
+		CameraSwitch.LEFT:
+			camPos -= 1
+			if camPos < 0:
+				camPos = 8
+			print(transform)
+			transform = cameraLocs[camPos].transform
+			print(transform)
+		CameraSwitch.RIGHT:
+			camPos += 1
+			if camPos > 8:
+				camPos = 0
+			print(transform)
+			transform = cameraLocs[camPos].transform
+			print(transform)
 
 func init(nickname, start_position, is_slave):
-	$GUI/Nickname.text = nickname
+	$ObserverGUI/Nickname.text = nickname
 	global_position = start_position

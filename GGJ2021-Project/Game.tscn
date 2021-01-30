@@ -10,3 +10,29 @@ script = ExtResource( 1 )
 position = Vector2( 1647.98, 823.988 )
 scale = Vector2( 7.43741, 7.43741 )
 texture = ExtResource( 2 )
+
+[node name="Camera 1" type="Node2D" parent="."]
+
+[node name="Camera 2" type="Node2D" parent="."]
+position = Vector2( 1668.14, 5.03967 )
+
+[node name="Camera 3" type="Node2D" parent="."]
+position = Vector2( 3477.38, 0 )
+
+[node name="Camera 4" type="Node2D" parent="."]
+position = Vector2( 3472.34, 846.667 )
+
+[node name="Camera 5" type="Node2D" parent="."]
+position = Vector2( 3477.38, 1703.41 )
+
+[node name="Camera 6" type="Node2D" parent="."]
+position = Vector2( 1763.89, 1642.94 )
+
+[node name="Camera 7" type="Node2D" parent="."]
+position = Vector2( 0, 1673.18 )
+
+[node name="Camera 8" type="Node2D" parent="."]
+position = Vector2( -5.03979, 942.421 )
+
+[node name="Camera 9" type="Node2D" parent="."]
+position = Vector2( 1688.29, 836.588 )
