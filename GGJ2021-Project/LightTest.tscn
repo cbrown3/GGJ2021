@@ -57,7 +57,11 @@ position = Vector2( 425.078, 590.301 )
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 75.0534, 244.179 )
 tile_set = SubResource( 4 )
+<<<<<<< HEAD
 cell_size = Vector2( 19, 12 )
+=======
+cell_size = Vector2( 31, 45 )
+>>>>>>> main
 cell_quadrant_size = 1
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 cell_tile_origin = 1
