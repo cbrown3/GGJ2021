@@ -21,9 +21,10 @@ class Box:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generateBoxes(10) # 10 is an arbitrary number; decided later
-	for box in boxScenes:
-		add_child(box)
-	pass
+	print(boxes[0].xPos)
+	print(boxes[0].yPos)
+	get_node("balls").position = Vector2(boxes[0].xPos, boxes[0].yPos)
+	
 
 func generateBoxes(numBoxes):
 	# First for loop generates all necessary box data
@@ -58,6 +59,7 @@ func generateDimensions(box):
 
 func generatePosition(box):
 	# generates two random positions 0-100
+	randomize()
 	box.xPos = randi() % 851
 	box.yPos = randi() % 451
 
