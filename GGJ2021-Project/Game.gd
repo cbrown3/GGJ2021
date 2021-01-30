@@ -4,9 +4,16 @@ func _ready():
 	get_tree().connect('network_peer_disconnected', self, '_on_player_disconnected')
 	get_tree().connect('server_disconnected', self, '_on_server_disconnected')
 	
-	var new_player = preload('res://player/Player.tscn').instance()
-	new_player.name = str(get_tree().get_network_unique_id())
-	new_player.set_network_master(get_tree().get_network_unique_id())
+	var new_player
+	var id = get_tree().get_network_unique_id()
+	
+	if id == 1:
+		new_player = preload('res://player/Player.tscn').instance()
+	else:
+		new_player = preload('res://observer/Observer.tscn').instance()
+	
+	new_player.name = str(id)
+	new_player.set_network_master(id)
 	add_child(new_player)
 	var info = Network.self_data
 	new_player.init(info.name, info.position, false)

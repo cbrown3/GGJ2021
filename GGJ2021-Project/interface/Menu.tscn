@@ -20,26 +20,57 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -315.0
-margin_top = -120.0
-margin_right = 315.0
-margin_bottom = 120.0
+margin_left = -312.0
+margin_top = -275.0
+margin_right = 355.0
+margin_bottom = 263.0
 custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Title2" type="Label" parent="VBoxContainer"]
-margin_right = 630.0
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_right = 667.0
 margin_bottom = 52.0
 custom_fonts/font = ExtResource( 2 )
 text = "GGJ2021"
 align = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="IP Label" type="Label" parent="VBoxContainer"]
 margin_top = 72.0
-margin_right = 630.0
-margin_bottom = 179.0
+margin_right = 667.0
+margin_bottom = 124.0
+custom_fonts/font = ExtResource( 2 )
+text = "IP Address (If Joining):"
+align = 1
+
+[node name="IP" type="LineEdit" parent="VBoxContainer"]
+margin_top = 144.0
+margin_right = 667.0
+margin_bottom = 168.0
+align = 1
+max_length = 15
+clear_button_enabled = true
+placeholder_text = "If Joining, Enter IP Here"
+caret_blink = true
+
+[node name="PortForwardInstrction" type="Label" parent="VBoxContainer"]
+margin_top = 188.0
+margin_right = 667.0
+margin_bottom = 295.0
+custom_fonts/font = ExtResource( 2 )
+text = "If Hosting, Set Port Forward
+to 63384"
+align = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 315.0
+margin_right = 667.0
+margin_bottom = 422.0
 custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="CreateServer" type="Label" parent="VBoxContainer/HBoxContainer2"]
 margin_right = 367.0
 margin_bottom = 107.0
 custom_fonts/font = ExtResource( 2 )
@@ -47,7 +78,7 @@ text = "Create Server as
 Player"
 align = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="JoinServer" type="Label" parent="VBoxContainer/HBoxContainer2"]
 margin_left = 387.0
 margin_right = 593.0
 margin_bottom = 107.0
@@ -56,14 +87,14 @@ text = "Join as
 Observer"
 align = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 199.0
-margin_right = 630.0
-margin_bottom = 295.0
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 442.0
+margin_right = 667.0
+margin_bottom = 538.0
 custom_constants/separation = 0
 
-[node name="CreateButton" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
-margin_right = 315.0
+[node name="CreateButton" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
+margin_right = 333.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 192, 96 )
 size_flags_horizontal = 3
@@ -73,9 +104,9 @@ texture_pressed = ExtResource( 7 )
 expand = true
 stretch_mode = 5
 
-[node name="JoinButton" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 315.0
-margin_right = 630.0
+[node name="JoinButton" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
+margin_left = 333.0
+margin_right = 667.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 192, 96 )
 size_flags_horizontal = 3
@@ -84,5 +115,5 @@ texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 expand = true
 stretch_mode = 5
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CreateButton" to="." method="_on_CreateButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/JoinButton" to="." method="_on_JoinButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/CreateButton" to="." method="_on_CreateButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/JoinButton" to="." method="_on_JoinButton_pressed"]

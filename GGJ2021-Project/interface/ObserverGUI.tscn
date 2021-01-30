@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://interface/fonts/montserrat_eb_32.tres" type="DynamicFont" id=1]
+
+[node name="ObserverGUI" type="Control"]
+margin_left = -78.0
+margin_top = -120.0
+margin_right = 78.0
+margin_bottom = 122.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Nickname" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -94.5
+margin_top = -40.0
+margin_right = 94.5
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_shadow = Color( 1, 0.596078, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "NICKNAME"
+align = 1
+valign = 1
