@@ -38,17 +38,13 @@ func _move(direction):
 			camPos -= 1
 			if camPos < 0:
 				camPos = 8
-			print(transform)
 			transform = cameraLocs[camPos].transform
-			print(transform)
 		CameraSwitch.RIGHT:
 			camPos += 1
 			if camPos > 8:
 				camPos = 0
-			print(transform)
 			transform = cameraLocs[camPos].transform
-			print(transform)
 
-func init(nickname, start_position, is_slave):
+func init(nickname, start_position):
 	$ObserverGUI/Nickname.text = nickname
 	global_position = start_position
