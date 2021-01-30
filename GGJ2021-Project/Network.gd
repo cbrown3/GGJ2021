@@ -28,7 +28,6 @@ func connect_to_server(player_nickname):
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(DEFAULT_IP, DEFAULT_PORT)
 	get_tree().set_network_peer(peer)
-	print(get_tree().get_network_unique_id())
 
 func _connected_to_server():
 	var local_player_id = get_tree().get_network_unique_id()
@@ -57,21 +56,17 @@ remote func _request_players(request_from_id):
 
 remote func _send_player_info(id, info):
 	players[id] = info
-	print(id)
 	var new_player
 	
 	if id == 1:
 		new_player = load('res://player/Player.tscn').instance()
-		new_player.name = str(1)
-		new_player.set_network_master(1)
-		$'/root/Game/'.add_child(new_player)
-		new_player.init(info.name, info.position, true)
 	else:
 		new_player = load('res://observer/Observer.tscn').instance()
-		new_player.name = str(id)
-		new_player.set_network_master(id)
-		$'/root/Game/'.add_child(new_player)
-		new_player.init(info.name, info.position, true)
+	
+	new_player.name = str(id)
+	new_player.set_network_master(id)
+	$'/root/Game/'.add_child(new_player)
+	new_player.init(info.name, info.position, true)
 
 func update_position(id, position):
 	players[id].position = position

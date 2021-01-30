@@ -11,13 +11,11 @@ func _ready():
 	
 	if id == 1:
 		new_player = preload('res://player/Player.tscn').instance()
-		new_player.name = str(id)
-		new_player.set_network_master(id)
 	else:
 		new_player = preload('res://observer/Observer.tscn').instance()
-		new_player.name = str(id)
-		new_player.set_network_master(id)
 	
+	new_player.name = str(id)
+	new_player.set_network_master(id)
 	add_child(new_player)
 	var info = Network.self_data
 	new_player.init(info.name, info.position, false)

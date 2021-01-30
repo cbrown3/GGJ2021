@@ -4,16 +4,16 @@
 [ext_resource path="res://sprites/background.png" type="Texture" id=2]
 [ext_resource path="res://sprites/a07b0845d5fa1f25e0cc7bb5eb7ba776.png" type="Texture" id=3]
 
-[sub_resource type="OccluderPolygon2D" id=4]
+[sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 32, 45, 0, 45, 0, 0, 32, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 32, 45, 0, 45, 0, 0, 32, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 32, 45, 0.599014, 45, 0.599014, 0, 32, 0 )
 
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=4]
 0/name = "a07b0845d5fa1f25e0cc7bb5eb7ba776.png 0"
 0/texture = ExtResource( 3 )
 0/tex_offset = Vector2( 0, 0 )
@@ -21,7 +21,7 @@ points = PoolVector2Array( 32, 45, 0.599014, 45, 0.599014, 0, 32, 0 )
 0/region = Rect2( 32, 115, 32, 45 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
-0/occluder = SubResource( 4 )
+0/occluder = SubResource( 1 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -38,7 +38,7 @@ points = PoolVector2Array( 32, 45, 0.599014, 45, 0.599014, 0, 32, 0 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 5 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
@@ -57,7 +57,7 @@ position = Vector2( 632.645, 385.799 )
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
 position = Vector2( 75.0534, 244.179 )
-tile_set = SubResource( 3 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 31, 45 )
 cell_quadrant_size = 1
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
