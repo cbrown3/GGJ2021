@@ -1,16 +1,18 @@
 extends Node2D
 
+var tile = preload("res://puzzles/mazeTile.tscn")
 
 var rng = RandomNumberGenerator.new()
 var astar = AStar2D.new()
-var mazeWidth = 9
-var mazeHeight = 7
+var mazeWidth = 10
+var mazeHeight = 15
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
 	var maze = generate_maze()
 	print_maze(maze)
+	build_maze(maze)
 #creates a maze with 1 path from top left to bottom right
 #assigns random numbers to each square in the array
 #runs an a* algorithm to create a path
@@ -39,3 +41,12 @@ func print_maze(maze):
 	for y in range(mazeHeight):
 		print(maze[y])
 	print("\n")
+
+func build_maze(maze):
+	for y in range(mazeHeight):
+		for x in range (mazeWidth):
+			var tile_instance = tile.instance()
+			tile_instance.position = Vector2((x * 64) + 64, (y * 64) + 64)
+			if maze[y][x] == 1:
+				tile_instance.makeSafe()
+			add_child(tile_instance)
