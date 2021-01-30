@@ -5,7 +5,10 @@ extends Node2D
 # var a = 2
 # var b = "text"
 var boxes = []
+var boxScenes = []
 enum Contents {NOTHING, GLUE, SHOCK, DOORKEY}
+
+
 
 class Box:
 	var xPos = 0
@@ -17,10 +20,14 @@ class Box:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	generateBoxes(10) #10 is an arbitrary number; decided later
+	generateBoxes(10) # 10 is an arbitrary number; decided later
+	for box in boxScenes:
+		add_child(box)
+	pass
 
 func generateBoxes(numBoxes):
-	for n in range(numBoxes+1):
+	# First for loop generates all necessary box data
+	for n in range(numBoxes):
 		var newBox = Box.new()
 		newBox.id = n
 		if n == 0:
@@ -34,9 +41,15 @@ func generateBoxes(numBoxes):
 		generateDimensions(newBox)
 		boxes.append(newBox)
 		generateBoxPositions()
-	for box in boxes:
-		print(box.whatsInside)
-	pass
+		
+		var newBoxScene = load("res://puzzles/Box.tscn")
+		var newBoxSceneInstance = newBoxScene.instance()
+		var name = str("Box",n)
+		newBoxSceneInstance.set_name(name)
+		boxScenes.append(newBoxSceneInstance)
+	# Add the child to the scene 
+	# This is done after so that the box's ready function will apply all the necessary transforms
+	
 
 func generateDimensions(box):
 	# generates a random height and width from 5-15
@@ -45,15 +58,18 @@ func generateDimensions(box):
 
 func generatePosition(box):
 	# generates two random positions 0-100
-	box.xPos = randi() % 101
-	box.yPos = randi() % 101
+	box.xPos = randi() % 851
+	box.yPos = randi() % 451
 
 func generateBoxPositions():
 	for box in boxes:
-		if box == boxes[0]:
+		if box.id == boxes[0].id:
+			# if it's the first box, just give it a position
 			generatePosition(box)
 		else:
+			# Generate a random position, and then check for position validity.
 			generatePosition(box)
+			# while !checkPositionValidity (the position is false / not valid), generate a new position  
 			while !checkPositionValidity(box):
 				generatePosition(box)
 
