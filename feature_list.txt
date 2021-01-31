@@ -2,16 +2,16 @@
 game description:
 Co-op game
 First player, you are in some sort of dark room/house/area/whatever and you are lost, and your goal is to get out. 
-The second player has to help the first player, like a spectator with ability to see different rooms through "security cameras".
-First players camera is centered around the player character.
-Second players camera is locked to different rooms, able to switch between them whenever.
+✓The second player has to help the first player, like a spectator with ability to see different rooms through "security cameras".
+✓First players camera is centered around the player character.
+✓Second players camera is locked to different rooms, able to switch between them whenever.
 Second player may be able to help first player with escaping by opening doors, moving things around to let them pass through, etc.
 The two players need to work together.
 
 game ideas:
-- player 1 has vision of their immediate surroundings either from a circle or cone coming from them (flashlight)
+-✓player 1 has vision of their immediate surroundings either from a circle or cone coming from them (flashlight)
 - player 1 has to communicate with player 2 to figure out how to solve the puzzle/escape the room
-- player 2 has vision of an indiviudal room, and can switch between rooms
+-✓player 2 has vision of an indiviudal room, and can switch between rooms
 - player 1 is being chased by an enemy
 - enemy only chases player 1 if player 2 is not currently looking at it
 - if player 2 looks at enemy for too long then the camera malfunctions/they get stunned/w.e inconvenience
