@@ -3,7 +3,7 @@
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/player.png" type="Texture" id=2]
 [ext_resource path="res://player/shadow.png" type="Texture" id=4]
-[ext_resource path="res://interface/GUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://interface/PlayerGUI.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 27.5014, 70.4704 )

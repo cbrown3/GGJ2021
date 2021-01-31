@@ -13,9 +13,13 @@ var health_points = MAX_HP
 func _ready():
 	_update_health_bar()
 
+func _process(delta):
+	if is_network_master():
+		$Camera2D.make_current()
+
 func _physics_process(delta):
 	var direction = MoveDirection.NONE
-	if is_network_master():
+	if is_network_master():	
 		if Input.is_action_pressed('left'):
 			direction = MoveDirection.LEFT
 		elif Input.is_action_pressed('right'):
