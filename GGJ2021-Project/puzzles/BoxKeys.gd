@@ -41,7 +41,7 @@ func generateDimensions():
 
 func generatePosition(box):
 	randomize()
-	var pos = Vector2(randi() % 851,  randi() % 451)
+	var pos = Vector2(randi() % 1751,  randi() % 1001)
 	var valid = boxes.size() == 0
 	while !valid:
 		valid = true
@@ -57,7 +57,7 @@ func generatePosition(box):
 				elif compare.posi.y <= pos.y && compare.posi.y + 200 >= pos.y:
 					valid = false
 			if !valid:
-				pos = Vector2(randi() % 851,  randi() % 451)
+				pos = Vector2(randi() % 1751,  randi() % 1001)
 				break
 	return pos
 
