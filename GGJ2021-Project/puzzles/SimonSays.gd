@@ -7,10 +7,8 @@ var solution = null
 func _ready():
 	solution = simon_says_rng(GRID_DIMENSION * GRID_DIMENSION)
 	print(solution)
-	process_step(solution[0])
-	print(solution)
-	process_step(solution[0])
-	print(solution)
+	var count = 0
+		
 	
 func process_step(id):
 	# id should be mapped to the cell of the grid
