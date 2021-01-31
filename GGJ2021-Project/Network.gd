@@ -1,11 +1,11 @@
 extends Node
 
 const DEFAULT_IP = '127.0.0.1'
-const DEFAULT_PORT = 31400
+const DEFAULT_PORT = 63384
 const MAX_PLAYERS = 2
 
 var players = { }
-var self_data = { name = '', position = Vector2(360, 180) }
+var self_data = { name = '', position = Vector2(-1850, 2350) }
 
 signal player_disconnected
 signal server_disconnected
@@ -21,11 +21,15 @@ func create_server(player_nickname):
 	peer.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	get_tree().set_network_peer(peer)
 
-func connect_to_server(player_nickname):
+func connect_to_server(player_nickname, ip_address):
+	self_data.position = Vector2(1025, 525)
 	self_data.name = player_nickname
 	get_tree().connect('connected_to_server', self, '_connected_to_server')
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client(DEFAULT_IP, DEFAULT_PORT)
+	if ip_address != null:
+		peer.create_client(ip_address, DEFAULT_PORT)
+	else:
+		peer.create_client(DEFAULT_IP, DEFAULT_PORT)
 	get_tree().set_network_peer(peer)
 
 func _connected_to_server():
@@ -54,7 +58,14 @@ remote func _request_players(request_from_id):
 
 remote func _send_player_info(id, info):
 	players[id] = info
-	var new_player = load('res://player/Player.tscn').instance()
+	var new_player
+	var new_sprite
+	
+	if id == 1:
+		new_player = load('res://player/Player.tscn').instance()
+	else:
+		new_player = load('res://observer/Observer.tscn').instance()
+	
 	new_player.name = str(id)
 	new_player.set_network_master(id)
 	$'/root/Game/'.add_child(new_player)

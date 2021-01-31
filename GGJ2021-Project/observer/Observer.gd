@@ -1,27 +1,30 @@
-extends KinematicBody2D
+extends Node2D
 
-const MOVE_SPEED = 10.0
+var cameraLocs = { }
 
-enum MoveDirection { UP, DOWN, LEFT, RIGHT, NONE }
+var camPos = 0
+
+enum CameraSwitch { LEFT, RIGHT, NONE }
 
 slave var slave_position = Vector2()
-slave var slave_movement = MoveDirection.NONE
-
+slave var slave_movement = CameraSwitch.NONE
 
 func _ready():
-	pass
+	var children = get_parent().get_children()
+	var i = 0
+	for node in children:
+		if node.name.begins_with("Camera "):
+			cameraLocs[i] = node
+			i+= 1
 
-func _physics_process(delta):
-	var direction = MoveDirection.NONE
+func _process(delta):
+	var direction = CameraSwitch.NONE
 	if is_network_master():
-		if Input.is_action_pressed('left'):
-			direction = MoveDirection.LEFT
-		elif Input.is_action_pressed('right'):
-			direction = MoveDirection.RIGHT
-		elif Input.is_action_pressed('up'):
-			direction = MoveDirection.UP
-		elif Input.is_action_pressed('down'):
-			direction = MoveDirection.DOWN
+		if Input.is_action_just_pressed('left'):
+			direction = CameraSwitch.LEFT
+		elif Input.is_action_just_pressed('right'):
+			direction = CameraSwitch.RIGHT
+		$Camera2D.make_current()
 		
 		rset_unreliable('slave_position', position)
 		rset('slave_movement', direction)
@@ -35,17 +38,19 @@ func _physics_process(delta):
 
 func _move(direction):
 	match direction:
-		MoveDirection.NONE:
+		CameraSwitch.NONE:
 			return
-		MoveDirection.UP:
-			move_local_y(-MOVE_SPEED)
-		MoveDirection.DOWN:
-			move_local_y(MOVE_SPEED)
-		MoveDirection.LEFT:
-			move_local_x(-MOVE_SPEED)
-		MoveDirection.RIGHT:
-			move_local_x(MOVE_SPEED)
+		CameraSwitch.LEFT:
+			camPos -= 1
+			if camPos < 0:
+				camPos = 3
+			transform = cameraLocs[camPos].transform
+		CameraSwitch.RIGHT:
+			camPos += 1
+			if camPos > 3:
+				camPos = 0
+			transform = cameraLocs[camPos].transform
 
 func init(nickname, start_position, is_slave):
-	$GUI/Nickname.text = nickname
+	$ObserverGUI/Nickname.text = ""
 	global_position = start_position
