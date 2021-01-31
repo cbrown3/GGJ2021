@@ -1,6 +1,6 @@
 extends Node2D
 
-var cameraLocs = { }
+var cameras = { }
 
 var camPos = 0
 
@@ -14,8 +14,9 @@ func _ready():
 	var i = 0
 	for node in children:
 		if node.name.begins_with("Camera "):
-			cameraLocs[i] = node
+			cameras[i] = node
 			i+= 1
+		
 
 func _process(delta):
 	var direction = CameraSwitch.NONE
@@ -41,15 +42,19 @@ func _move(direction):
 		CameraSwitch.NONE:
 			return
 		CameraSwitch.LEFT:
+			cameras[camPos].get_child(2).play()
 			camPos -= 1
 			if camPos < 0:
 				camPos = 3
-			transform = cameraLocs[camPos].transform
+			transform = cameras[camPos].transform
+			cameras[camPos].get_child(1).play()
 		CameraSwitch.RIGHT:
+			cameras[camPos].get_child(2).play()
 			camPos += 1
 			if camPos > 3:
 				camPos = 0
-			transform = cameraLocs[camPos].transform
+			transform = cameras[camPos].transform
+			cameras[camPos].get_child(1).play()
 
 func init(nickname, start_position, is_slave):
 	$ObserverGUI/Nickname.text = ""
