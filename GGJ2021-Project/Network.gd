@@ -58,9 +58,12 @@ remote func _request_players(request_from_id):
 remote func _send_player_info(id, info):
 	players[id] = info
 	var new_player
+	var new_sprite
 	
 	if id == 1:
 		new_player = load('res://player/Player.tscn').instance()
+		new_sprite = load('res://LightTest.tscn').instance()
+		$'/root/Game/'.add_child(new_sprite)
 	else:
 		new_player = load('res://observer/Observer.tscn').instance()
 	
