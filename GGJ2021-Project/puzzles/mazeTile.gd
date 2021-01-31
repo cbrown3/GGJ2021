@@ -9,3 +9,4 @@ func _ready():
 
 func makeSafe():
 	isSafe = true
+	get_node("Sprite").set_texture(safeTexture)

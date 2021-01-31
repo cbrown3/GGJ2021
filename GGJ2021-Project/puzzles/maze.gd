@@ -4,8 +4,8 @@ var tile = preload("res://puzzles/mazeTile.tscn")
 
 var rng = RandomNumberGenerator.new()
 var astar = AStar2D.new()
-var mazeWidth = 10
-var mazeHeight = 15
+var mazeWidth = 7
+var mazeHeight = 7
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,10 +31,14 @@ func generate_maze():
 				astar.connect_points(astarID, astarID - mazeWidth)
 			astarID += 1
 	#Calculate Path
-	var safePath = astar.get_point_path(0, mazeWidth * mazeHeight - 1)
+	var mazeStart = mazeWidth * rng.randi_range(0, mazeHeight - 1)
+	var mazeEnd = (mazeWidth * rng.randi_range(1, mazeHeight) ) - 1
+	var safePath = astar.get_point_path(mazeStart, mazeEnd)
 	#Add the safe tiles to maze
 	for safeTile in safePath:
 		maze[safeTile.y][safeTile.x] = 1 #TODO: replace with safe tile
+	print(mazeStart)
+	print(mazeEnd)
 	return maze
 
 func print_maze(maze):
