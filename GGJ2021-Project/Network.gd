@@ -5,7 +5,7 @@ const DEFAULT_PORT = 63384
 const MAX_PLAYERS = 2
 
 var players = { }
-var self_data = { name = '', position = Vector2(360, 180) }
+var self_data = { name = '', position = Vector2(-1850, 2350) }
 
 signal player_disconnected
 signal server_disconnected
@@ -22,6 +22,7 @@ func create_server(player_nickname):
 	get_tree().set_network_peer(peer)
 
 func connect_to_server(player_nickname, ip_address):
+	self_data.position = Vector2(1025, 525)
 	self_data.name = player_nickname
 	get_tree().connect('connected_to_server', self, '_connected_to_server')
 	var peer = NetworkedMultiplayerENet.new()
@@ -62,8 +63,6 @@ remote func _send_player_info(id, info):
 	
 	if id == 1:
 		new_player = load('res://player/Player.tscn').instance()
-		new_sprite = load('res://LightTest.tscn').instance()
-		$'/root/Game/'.add_child(new_sprite)
 	else:
 		new_player = load('res://observer/Observer.tscn').instance()
 	

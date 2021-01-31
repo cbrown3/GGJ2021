@@ -22,7 +22,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Network="*res://Network.gd"
-BoxKeys="*res://puzzles/BoxKeys.gd"
 
 [input]
 
@@ -59,5 +58,5 @@ shoot={
 
 [rendering]
 
-environment/default_clear_color=Color( 0.690196, 0.745098, 0.772549, 1 )
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

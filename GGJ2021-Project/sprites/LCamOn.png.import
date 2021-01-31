@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hills.png-75f7f79eba46b8388d67ae02c93e148b.stex"
+path="res://.import/LCamOn.png-5f0429a3af5c32a47e52beffd168ac9c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Hills.png"
-dest_files=[ "res://.import/Hills.png-75f7f79eba46b8388d67ae02c93e148b.stex" ]
+source_file="res://sprites/LCamOn.png"
+dest_files=[ "res://.import/LCamOn.png-5f0429a3af5c32a47e52beffd168ac9c.stex" ]
 
 [params]
 

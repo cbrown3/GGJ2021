@@ -18,6 +18,31 @@ func _ready():
 	var info = Network.self_data
 	new_player.init(info.name, info.position, false)
 
+func _process(delta):
+	if Network.players.size() > 1:
+		var observer
+		for key in Network.players.keys():
+			if key != 1:
+				observer = str(key)
+				
+		if get_node(observer).position == get_node("Camera 1").position:
+			get_node("Camera 1/Sprite").texture = load("res://sprites/RCamOn.png")
+		elif get_node(observer).position != get_node("Camera 1").position:
+			get_node("Camera 1/Sprite").texture = load("res://sprites/RCamOff.png")
+		if get_node(observer).position == get_node("Camera 2").position:
+			get_node("Camera 2/Sprite").texture = load("res://sprites/RCamOn.png")
+		elif get_node(observer).position != get_node("Camera 2").position:
+			get_node("Camera 2/Sprite").texture = load("res://sprites/RCamOff.png")
+		if get_node(observer).position == get_node("Camera 3").position:
+			get_node("Camera 3/Sprite").texture = load("res://sprites/LCamOn.png")
+		elif get_node(observer).position != get_node("Camera 3").position:
+			get_node("Camera 3/Sprite").texture = load("res://sprites/LCamOff.png")
+		if get_node(observer).position == get_node("Camera 4").position:
+			get_node("Camera 4/Sprite").texture = load("res://sprites/LCamOn.png")
+		elif get_node(observer).position != get_node("Camera 4").position:
+			get_node("Camera 4/Sprite").texture = load("res://sprites/LCamOff.png")
+	pass
+
 func _on_player_disconnected(id):
 	get_node(str(id)).queue_free()
 
