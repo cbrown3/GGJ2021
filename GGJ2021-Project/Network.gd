@@ -5,7 +5,7 @@ const DEFAULT_PORT = 63384
 const MAX_PLAYERS = 2
 
 var players = { }
-var self_data = { name = '', position = Vector2(-1850, 2350) }
+var self_data = { name = '', position = Vector2(-1650, 2350) }
 
 signal player_disconnected
 signal server_disconnected

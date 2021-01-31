@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/player.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://sprites/player_sprites/player-3.png" type="Texture" id=11]
 [ext_resource path="res://sprites/player_sprites/player-2.png" type="Texture" id=12]
 [ext_resource path="res://sprites/player_sprites/player-1.png" type="Texture" id=13]
+[ext_resource path="res://sounds/sfx/Footsteps_Player.wav" type="AudioStream" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 27.5014, 25.9075 )
@@ -45,7 +46,7 @@ position = Vector2( 1.49832, -5.72205e-06 )
 scale = Vector2( 0.075, 0.075 )
 frames = SubResource( 2 )
 animation = "Walking"
-frame = 4
+frame = 6
 playing = true
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -75,4 +76,8 @@ texture_scale = 0.5
 shadow_enabled = true
 shadow_color = Color( 1, 1, 1, 0 )
 shadow_gradient_length = 2.0
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -15.0
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]

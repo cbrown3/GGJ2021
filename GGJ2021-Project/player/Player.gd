@@ -12,6 +12,7 @@ var health_points = MAX_HP
 
 func _ready():
 	_update_health_bar()
+	$Audio.play()
 
 func _process(delta):
 	if is_network_master():
@@ -42,15 +43,20 @@ func _physics_process(delta):
 func _move(direction):
 	match direction:
 		MoveDirection.NONE:
+			$Audio.stream_paused = true
 			return
 		MoveDirection.UP:
 			move_and_collide(Vector2(0, -MOVE_SPEED))
+			$Audio.stream_paused = false
 		MoveDirection.DOWN:
 			move_and_collide(Vector2(0, MOVE_SPEED))
+			$Audio.stream_paused = false
 		MoveDirection.LEFT:
 			move_and_collide(Vector2(-MOVE_SPEED, 0))
+			$Audio.stream_paused = false
 		MoveDirection.RIGHT:
 			move_and_collide(Vector2(MOVE_SPEED, 0))
+			$Audio.stream_paused = false
 
 func _update_health_bar():
 	$GUI/HealthBar.value = health_points
