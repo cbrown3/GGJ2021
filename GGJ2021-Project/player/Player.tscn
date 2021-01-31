@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/player.png" type="Texture" id=2]
 [ext_resource path="res://sprites/lightBeam.png" type="Texture" id=3]
 [ext_resource path="res://player/shadow.png" type="Texture" id=4]
 [ext_resource path="res://interface/PlayerGUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://player/light.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 27.5014, 70.4704 )
@@ -14,16 +15,22 @@ extents = Vector2( 27.5014, 70.4704 )
 ]]
 script = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( -3.96856, 46.0346 )
+scale = Vector2( 0.198549, 0.181497 )
+texture = ExtResource( 6 )
+energy = 0.38
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 0, 57.4676 )
 z_index = -1
 texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
 
 [node name="GUI" parent="." instance=ExtResource( 5 )]
 margin_left = -76.3182
@@ -54,4 +61,21 @@ shadow_buffer_size = 6298
 shadow_gradient_length = 1013.7
 shadow_filter = 1
 shadow_filter_smooth = 40.6
+
+[node name="Light2D4" type="Light2D" parent="."]
+position = Vector2( 1.98145, -52.7612 )
+scale = Vector2( 0.133004, 0.115402 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -3000 )
+texture_scale = 22.57
+energy = 4.17
+range_height = 1.0
+range_item_cull_mask = -2147483647
+shadow_enabled = true
+shadow_buffer_size = 6298
+shadow_gradient_length = 1013.7
+shadow_filter = 1
+shadow_filter_smooth = 40.6
+
+[node name="Light2D2" type="Light2D" parent="."]
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
