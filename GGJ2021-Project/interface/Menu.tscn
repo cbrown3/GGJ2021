@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://interface/Menu.gd" type="Script" id=1]
 [ext_resource path="res://interface/fonts/montserrat_eb_48.tres" type="DynamicFont" id=2]
+[ext_resource path="res://sounds/music/Main-Menu.wav" type="AudioStream" id=3]
 [ext_resource path="res://interface/buttons/join.png" type="Texture" id=4]
 [ext_resource path="res://interface/buttons/join-pressed.png" type="Texture" id=5]
 [ext_resource path="res://interface/buttons/create.png" type="Texture" id=6]
@@ -31,15 +32,15 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-margin_right = 667.0
+margin_right = 690.0
 margin_bottom = 52.0
 custom_fonts/font = ExtResource( 2 )
-text = "GGJ2021"
+text = "Creeper Crept, Sweeper Swept"
 align = 1
 
 [node name="IP Label" type="Label" parent="VBoxContainer"]
 margin_top = 72.0
-margin_right = 667.0
+margin_right = 690.0
 margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
 text = "IP Address (If Joining):"
@@ -47,7 +48,7 @@ align = 1
 
 [node name="IP" type="LineEdit" parent="VBoxContainer"]
 margin_top = 144.0
-margin_right = 667.0
+margin_right = 690.0
 margin_bottom = 168.0
 align = 1
 max_length = 15
@@ -57,7 +58,7 @@ caret_blink = true
 
 [node name="PortForwardInstrction" type="Label" parent="VBoxContainer"]
 margin_top = 188.0
-margin_right = 667.0
+margin_right = 690.0
 margin_bottom = 295.0
 custom_fonts/font = ExtResource( 2 )
 text = "If Hosting, Set Port Forward
@@ -66,7 +67,7 @@ align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 315.0
-margin_right = 667.0
+margin_right = 690.0
 margin_bottom = 422.0
 custom_constants/separation = 20
 
@@ -89,12 +90,12 @@ align = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 442.0
-margin_right = 667.0
+margin_right = 690.0
 margin_bottom = 538.0
 custom_constants/separation = 0
 
 [node name="CreateButton" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
-margin_right = 333.0
+margin_right = 345.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 192, 96 )
 size_flags_horizontal = 3
@@ -105,8 +106,8 @@ expand = true
 stretch_mode = 5
 
 [node name="JoinButton" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
-margin_left = 333.0
-margin_right = 667.0
+margin_left = 345.0
+margin_right = 690.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 192, 96 )
 size_flags_horizontal = 3
@@ -115,5 +116,11 @@ texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 expand = true
 stretch_mode = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+autoplay = true
+mix_target = 1
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/CreateButton" to="." method="_on_CreateButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/JoinButton" to="." method="_on_JoinButton_pressed"]
