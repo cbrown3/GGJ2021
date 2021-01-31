@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const MOVE_SPEED = 10.0
+const MOVE_SPEED = 7.5
 const MAX_HP = 100
 
 enum MoveDirection { UP, DOWN, LEFT, RIGHT, NONE }
